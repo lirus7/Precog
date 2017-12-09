@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script>
+
+		var options = [];
+    var s_options= []
+		var data = {{data1|safe}};
+    var s_data={{data2|safe}};
+		for(i=0;i<data.length;i++)
+		{
+			options.push({name:data[i][0],y:data[i][1]})
+      s_options.push({name:s_data[i][0],y:s_data[i][1]})
+		}
+	$(document).ready(function () {
+    // Build the chart
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Types of Tweets : Delhi'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Type',
+            colorByPoint: true,
+            data: options
+        }]
+    });
+
+    Highcharts.chart('s_container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Types of Tweets : Mumbai'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Type',
+            colorByPoint: true,
+            data: s_options
+        }]
+    });
+
+});
+</script>
+	<title>Result</title>
+</head>
+<body>
+
+	<div  style="width: 100%; overflow: hidden;">
+	<div id="container" style="width: 600px; float: left;"></div>
+	<div id="s_container" style="margin-left: 620px;"></div>
+	</div>
+
+</body>
+</html>

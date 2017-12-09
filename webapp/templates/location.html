@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+    <script type='text/javascript'>
+     google.charts.load('current', {
+       'packages': ['geochart'],
+       // Note: you will need to get a mapsApiKey for your project.
+       // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+       'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+     });
+     google.charts.setOnLoadCallback(drawMarkersMap);
+     google.charts.setOnLoadCallback(drawMarkersMap2);
+      function drawMarkersMap() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Country');
+      data.addColumn('number', 'Value');
+      data.addRows( {{data1|safe}} );
+
+
+      var options = {
+        displayMode: 'markers',
+        colorAxis: {colors: ['green', 'blue','red']}
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('chart_div_Delhi'));
+      chart.draw(data, options);
+    };
+
+    function drawMarkersMap2() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Country');
+    data.addColumn('number', 'Value');
+    data.addRows( {{data2|safe}} );
+
+
+    var options = {
+      displayMode: 'markers',
+      colorAxis: {colors: ['green', 'blue','red']}
+    };
+
+    var chart = new google.visualization.GeoChart(document.getElementById('chart_div_Mumbai'));
+    chart.draw(data, options);
+    };
+    </script>
+  </head>
+  <body>
+
+    	<div  style="width: 100%; overflow: hidden;">
+          <div id="chart_div_Delhi" style=" float: left; width: 640px; height: 480px;">Delhi</div>
+          <div id="chart_div_Mumbai" style="margin-left: 660px; width: 640px; height: 480px;">Mumbai</div>
+      </div>
+  </body>
+</html>
